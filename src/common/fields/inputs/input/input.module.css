@@ -1,0 +1,12 @@
+.error {
+  background: rgba(218, 57, 57, 0.3);
+}
+
+.helperText {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #e36464;
+  margin-top: 5px;
+  margin-left: 10px;
+}
