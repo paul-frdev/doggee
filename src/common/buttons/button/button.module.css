@@ -10,3 +10,12 @@
   font-size: 14px;
   line-height: 19px;
 }
+
+.button:hover {
+  background-color: #f5c678;
+  box-shadow: 6px 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.button:active {
+  background-color: rgba(245, 198, 120, 0.7);
+}

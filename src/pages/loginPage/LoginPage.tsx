@@ -7,17 +7,17 @@ export const LoginPage = () => {
 
   const [formValues, setFormValues] = useState({ username: '', password: '' });
 
-  console.log(formValues);
-
   return (
     <div className={styles.loginPage}>
       <div className={styles.container}>
-        <div>Header</div>
+        <div className={styles.headerText}>
+          DOGGEE
+        </div>
         <form className={styles.form}>
           <div className={styles.inputForm}>
             <Input
               className={styles.input}
-              isError={true}
+              isError={false}
               helperText={`Validation`}
               value={formValues.username}
               type='text'
