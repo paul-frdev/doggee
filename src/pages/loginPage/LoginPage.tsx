@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './loginPage.module.css';
 import { Input } from 'common/fields';
 import { Button } from 'common/buttons';
+import { useNavigate } from 'react-router-dom';
 
 
 const validateIsEmpty = (value: string) => {
@@ -31,7 +32,9 @@ interface FormErrors {
   password: string | null;
 }
 
-export const LoginPage = () => {
+const LoginPage = () => {
+
+  const navigate = useNavigate();
 
   const [formValues, setFormValues] = useState({ username: '', password: '' });
   const [formErrors, setFormErrors] = useState<FormErrors>({ username: null, password: null });
@@ -89,9 +92,14 @@ export const LoginPage = () => {
           <Button className={styles.loginButton}>Sign In</Button>
         </form>
         <div className={styles.SignupContainer}>
-          <a href="#">Create new account</a>
+          <a
+            href="#"
+            onClick={() => navigate('/registration', { state: { key: 'key' }, replace: true })}
+          >Create new account</a>
         </div>
       </div>
     </div>
   );
 };
+
+export default LoginPage;
