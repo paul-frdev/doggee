@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './loginPage.module.css';
-import { Input } from 'common/fields';
+import { Input, PasswordInput } from 'common/fields';
 import { Button } from 'common/buttons';
 import { useNavigate } from 'react-router-dom';
 
@@ -67,11 +67,10 @@ const LoginPage = () => {
             />
           </div>
           <div className={styles.inputForm}>
-            <Input
+            <PasswordInput
               className={styles.input}
               value={formValues.password}
               placeholder='password'
-              type='password'
               name='password'
               onChange={(event) => {
                 const password = event.currentTarget.value;
@@ -91,15 +90,14 @@ const LoginPage = () => {
           </div>
           <Button className={styles.loginButton}>Sign In</Button>
         </form>
-        <div className={styles.SignupContainer}>
-          <a
-            href="#"
-            onClick={() => navigate('/registration', { state: { key: 'key' }, replace: true })}
-          >Create new account</a>
+        <div className={styles.SignupContainer} onClick={() => navigate('/registration')}>
+          <span>
+            Create new account
+            </span>
         </div>
       </div>
     </div>
-  );
+  ); 
 };
 
 export default LoginPage;

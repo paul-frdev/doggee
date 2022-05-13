@@ -9,14 +9,15 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 export const Input: React.FC<InputProps> = ({ isError = false, className, helperText, ...props }) => {
 
   return (
-    <>
-      <input 
-      type="type" {...props} 
-      className={cn(styles.baseInput, className, {
-         [styles.error]: isError
-      })} 
+    <div className={styles.inputContainer}>
+      <input
+        type='type'
+        {...props}
+        className={cn(styles.baseInput, className, {
+          [styles.error]: isError
+        })}
       />
       {isError && helperText && <span className={styles.helperText}>{helperText}</span>}
-    </>
+    </div>
   );
 };
