@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import styles from './loginPage.module.css';
-import { Input, PasswordInput } from 'common/fields';
+import { Checkbox, Input, PasswordInput } from 'common/fields';
 import { Button } from 'common/buttons';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,9 +36,9 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
-  const [formValues, setFormValues] = useState({ username: '', password: '' });
+  const [formValues, setFormValues] = useState({ username: '', password: '', notMyComputer: false });
   const [formErrors, setFormErrors] = useState<FormErrors>({ username: null, password: null });
-
+  
   return (
     <div className={styles.loginPage}>
       <div className={styles.container}>
@@ -50,10 +50,10 @@ const LoginPage = () => {
             <Input
               className={styles.input}
               value={formValues.username}
+              label='username'
               type='text'
-              placeholder='Username'
               name='username'
-              onChange={(event) => {
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 const username = event.currentTarget.value;
                 setFormValues({ ...formValues, username });
 
@@ -70,9 +70,9 @@ const LoginPage = () => {
             <PasswordInput
               className={styles.input}
               value={formValues.password}
-              placeholder='password'
+              label='password'
               name='password'
-              onChange={(event) => {
+              onChange={(event: ChangeEvent<HTMLInputElement>) => {
                 const password = event.currentTarget.value;
                 setFormValues({ ...formValues, password });
 
@@ -86,18 +86,30 @@ const LoginPage = () => {
             />
           </div>
           <div>
-            <input type="checkbox" />
+            <Checkbox
+              label='This is not my device'
+              checked={formValues.notMyComputer}
+              onClick={(event: ChangeEvent<HTMLInputElement>) => {
+
+                const notMyComputer = event.currentTarget.checked;
+                setFormValues({ ...formValues, notMyComputer });
+              }}
+            />
           </div>
-          <Button className={styles.loginButton}>Sign In</Button>
+          <Button 
+          disabled={!formValues.username || !formValues.password}
+          isLoading={!formValues.username || !formValues.password}
+          className={styles.loginButton}
+          >Sign In</Button>
         </form>
         <div className={styles.SignupContainer} onClick={() => navigate('/registration')}>
           <span>
             Create new account
-            </span>
+          </span>
         </div>
       </div>
     </div>
-  ); 
+  );
 };
 
 export default LoginPage;

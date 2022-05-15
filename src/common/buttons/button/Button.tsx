@@ -6,13 +6,17 @@ interface ButtonProps extends DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,
   HTMLButtonElement
 > {
-  children: ReactNode
+  children: ReactNode;
+  isLoading?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, className, ...props }) => {
+export const Button: React.FC<ButtonProps> = ({ children, isLoading = false, className, ...props }) => {
   return (
     <button className={cn(styles.button, className)} {...props}>
-      {children}
+      {!isLoading && children}
+      {isLoading &&
+      <div className={styles.dotFlashing}/>
+      }
     </button>
   );
 };
